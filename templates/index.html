@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Travel Concierge</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fa-solid fa-plane-departure"></i>
+                <span>TravelAI</span>
+            </div>
+            <h1>Where do you want to go?</h1>
+            <p class="subtitle">Your personal AI travel agent. Just ask.</p>
+        </header>
+
+        <main>
+            <div class="input-card">
+                <div class="input-wrapper">
+                    <input type="text" id="prompt" placeholder="Describe your dream trip...">
+                    <button id="generateBtn" onclick="generatePlan()">
+                        <span>Plan Trip</span>
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </button>
+                </div>
+                <div class="helper-text">
+                    (e.g., "Plan a 3-day trip to Kyoto with a focus on food and history, budget is ₹50,000")
+                </div>
+            </div>
+
+            <div id="loading" class="loading-state hidden">
+                <div class="loader"></div>
+                <p>Crafting your perfect itinerary...</p>
+                <div class="steps">
+                    <span class="step" id="step1">Finding attractions...</span>
+                    <span class="step" id="step2">Checking hotels...</span>
+                    <span class="step" id="step3">Calculating budget...</span>
+                </div>
+            </div>
+
+            <div id="result" class="result-card hidden">
+                <div class="result-header">
+                    <h2>Your Itinerary</h2>
+                    <button class="copy-btn" onclick="copyToClipboard()">
+                        <i class="fa-regular fa-copy"></i> Copy
+                    </button>
+                </div>
+                <div id="markdown-content"></div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Powered by Gemini 2.0 & Google Maps</p>
+        </footer>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+
+</html>

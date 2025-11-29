@@ -1,0 +1,6 @@
+google-genai
+googlemaps
+flask
+python-dotenv
+pydantic
+requests
