@@ -1,4 +1,4 @@
-# 🧳 SAI Multi-Agent Trip Planner
+# 🧳 AI Multi-Agent Trip Planner
 ### *Powered by Gemini 2.0 + Google Maps APIs + Modern Agentic AI Design*
 
 ## 📌 1. Overview
