@@ -1,28 +1,126 @@
-# 🧳 Smart Travel Concierge – Agentic AI Multi-Agent Travel Planner  
+# 🧳 SAI Multi-Agent Trip Planner
 ### *Powered by Gemini 2.0 + Google Maps APIs + Modern Agentic AI Design*
 
-The **Smart Travel Concierge** is a multi-agent travel planning system that helps tourists generate a complete travel plan using natural language.  
+## 📌 1. Overview
+
+The **Smart Travel Concierge** is a multi-agent travel planning system that helps tourists generate a complete travel plan using natural language.
 A user simply says:
 
 > “I'm visiting Goa for 3–4 days. Suggest places, hotels, restaurants, transport options, and my budget.”
 
-The system outputs:  
-✔ Full itinerary  
-✔ Distances + navigation links  
-✔ Bus/metro routes  
-✔ Hotels to stay (Google Hotels / Places API)  
-✔ Best restaurants nearby  
-✔ Minimum & maximum budget  
-✔ Personalized recommendations based on saved preferences  
+The system outputs:
+✔ Full itinerary
+✔ Distances + navigation links
+✔ Bus/metro routes
+✔ Hotels to stay (Google Hotels / Places API)
+✔ Best restaurants nearby
+✔ Minimum & maximum budget
+✔ Personalized recommendations based on saved preferences
 
 This project uses **Gemini**, **Google APIs**, and the full **Agentic AI tool stack** to create a high-quality, production-ready travel planner.
 
----
+## 📌 Installation
 
-# ✨ Key Features
+1.  **Clone the repository:**
 
-### 🧠 Multi-Agent Architecture  
-This project uses multiple specialized agents running in parallel + sequence:
+    ```bash
+    git clone <repository_url>
+    cd smart-travel-concierge
+    ```
+
+2.  **Install dependencies:**
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+3.  **Setup Environment:**
+    Create a `.env` file with your API keys:
+    ```
+    GEMINI_KEY=your_key_here
+    GOOGLE_MAPS_KEY=your_key_here
+    ```
+
+## 📌 Usage
+
+1.  **Run the application:**
+
+    ```bash
+    python main.py
+    ```
+
+2.  **Access the platform:**
+    Open your browser and navigate to `http://127.0.0.1:5000`.
+
+3.  **Example Prompt:**
+    "Plan a 3-day trip to Kanyakumari with medium budget"
+
+## 📌 2. System Flow
+
+    User Prompt
+    ↓
+    Coordinator Agent
+    ├── Activity Search Agent → Google Places API
+    ├── Hotel Agent → Places + Hotels API
+    ├── Restaurant Agent → Places API
+    ├── Transport Agent → Directions API
+    ├── Budget Agent → Custom Budget Tool
+    └── Memory Agent → Session + Memory Bank
+    Coordinator Compiles Results
+    ↓
+    Final Travel Plan (Itinerary + Hotels + Food + Budget)
+
+## 📌 3. Tech Stack
+
+| Component | Technology |
+|-----------|------------|
+| **Language** | Python 3.8+ |
+| **Framework** | Flask |
+| **AI Model** | Google Gemini 2.0 (Pro/Flash) |
+| **APIs** | Google Maps Platform (Places, Directions, Distance Matrix) |
+| **Frontend** | HTML/CSS + Marked.js |
+
+## 📌 4. Project Folder Structure
+
+```
+smart-travel-concierge/
+│
+├── agents/          # AI agents (Coordinator, Activity, Hotel, etc.)
+├── tools/           # API wrappers (Google Places, Directions, etc.)
+├── memory/          # Session management & Memory Bank
+├── core/            # Utilities (Logging, Tracing, Metrics)
+├── api/             # Flask routes
+├── templates/       # HTML
+├── static/          # CSS/JS
+├── main.py          # Entry point
+└── requirements.txt
+```
+
+## 📌 5. Data & Memory
+
+### Sessions & Memory
+- **Session Service**: Remembers conversation context.
+- **Memory Bank**: Stores user preferences:
+  - Preferred cuisines
+  - Hotel comfort level
+  - Average budget
+  - Travel preferences (historic, beaches, adventure)
+
+## 📌 6. Backend Components
+
+### Google APIs Used
+- **Google Places API**: Find attractions, hotels, restaurants.
+- **Google Maps Directions API**: Navigation, bus routes, travel time.
+- **Google Distance Matrix API**: Calculate distance & cost.
+- **Google Search API**: Fetch latest travel info.
+
+### Custom Tools
+- `places_search_tool.py`
+- `directions_tool.py`
+- `distance_tool.py`
+- `budget_estimator_tool.py`
+
+## 📌 7. AI Agent Capabilities
 
 | Agent | Responsibilities |
 |-------|------------------|
@@ -35,222 +133,42 @@ This project uses multiple specialized agents running in parallel + sequence:
 | **Budget Planner Agent** | Computes min and max budget for the trip |
 | **Preference Memory Agent** | Stores user food taste, budget range, comfort level |
 
-All agents are powered by **Gemini 2.0 Pro/Flash** for reasoning and planning.
+## 📌 8. Example Output
 
----
+### 📅 Trip: 3 Days in Goa
+**User**: *“I’m traveling to Goa for 3 days on a medium budget.”*
 
-# 🔌 Tools & Integrations
+#### 🗓️ Day 1 – Aguada → Sinquerim → Baga
+- **Fort Aguada**: Historic fort + lighthouse (8.6 km)
+- **Sinquerim Beach**: Clean water, peaceful (2.1 km)
+- **Baga Beach**: Water sports, nightlife (6.8 km)
 
-### ✔ Google APIs Used
-- **Google Places API** – find attractions, hotels, restaurants  
-- **Google Maps Directions API** – navigation, bus routes, travel time  
-- **Google Distance Matrix API** – calculate distance & cost  
-- **Google Search API** – fetch latest travel info  
-- **(Optional) Google Hotels API** – for booking links  
+**Transport**: Bus No. 17 (Panjim → Sinquerim) or Taxi (₹150–250).
 
-### ✔ LLM Model  
-- **Gemini 2.0 Pro** for itinerary reasoning  
-- **Gemini 2.0 Flash** for fast extraction tasks  
+#### 🛏️ Recommended Hotels
+- **Taj Fort Aguada Resort & Spa**: 5-star, beachfront (₹12,000–18,000/night)
+- **Bloom Hotel – Calangute**: 3-star (₹3,000–4,000/night)
 
-### ✔ Custom Tools Implemented  
-- `places_search_tool.py`  
-- `directions_tool.py`  
-- `distance_tool.py`  
-- `budget_estimator_tool.py`  
-
----
-
-# 🧱 Architecture
-
-User Prompt
-↓
-Coordinator Agent
-├── Activity Search Agent → Google Places API
-├── Hotel Agent → Places + Hotels API
-├── Restaurant Agent → Places API
-├── Transport Agent → Directions API
-├── Budget Agent → Custom Budget Tool
-└── Memory Agent → Session + Memory Bank
-Coordinator Compiles Results
-↓
-Final Travel Plan (Itinerary + Hotels + Food + Budget)
-
-
----
-
-# 🧠 AI Concepts Used
-
-### ✔ Multi-Agent System  
-- **Parallel Agents** → hotel + food + activities search happens simultaneously  
-- **Sequential Agents** → itinerary → budget → refinement  
-- **Loop Agent** → adjusts plan until it fits user’s budget  
-
-### ✔ Sessions & Memory  
-- **Session Service** remembers conversation context  
-- **Memory Bank** stores:
-  - preferred cuisines  
-  - hotel comfort level  
-  - average budget  
-  - travel preferences (historic, beaches, adventure)
-
-### ✔ Observability  
-- Logging: agent interactions  
-- Tracing: when tools are called  
-- Metrics: tool latency, agent accuracy  
-
-### ✔ Agent Evaluation  
-- Per-step evaluation  
-- Itinerary coherence scoring  
-- Price accuracy checks  
-- Preference alignment check  
-
----
-
-# 🌍 Example Output (India Example – Goa Trip)
-
-### 📅 Trip: 3 Days in Goa  
-User: *“I’m traveling to Goa for 3 days on a medium budget.”*
-
----
-
-## 🗓️ Day 1 – Aguada → Sinquerim → Baga  
-### Places to Visit  
-| Place | Distance from Calangute | Highlights |
-|------|--------------------------|------------|
-| Fort Aguada | 8.6 km | Historic fort + lighthouse |
-| Sinquerim Beach | 2.1 km | Clean water, peaceful |
-| Baga Beach | 6.8 km | Water sports, nightlife |
-
-🚌 **Bus Route Example**  
-- Panjim → Sinquerim (Bus No. 17)  
-- Auto/taxi approx ₹150–250  
-
-📍 **Google Maps Link:** (generated by Directions API)
-
----
-
-## 🛏️ Recommended Hotels
-### 1. Taj Fort Aguada Resort & Spa  
-- 5-star, beachfront  
-- ₹12,000–18,000/night  
-- Booking Link: (Google Hotels API)
-
-### 2. Bloom Hotel – Calangute  
-- 3-star  
-- ₹3,000–4,000/night  
-
----
-
-## 🍽️ Restaurants to Try  
-### Fisherman’s Wharf – Calangute  
-- Goan seafood  
-- ₹800–1200/person  
-
-### Ritz Classic – Panjim  
-- Fish thali  
-- ₹300–500/person  
-
----
-
-## 💰 Budget Estimate  
-
+#### 💰 Budget Estimate
 | Category | Min | Max |
-|----------|------|------|
+|----------|-----|-----|
 | Stay | ₹3,000/day | ₹18,000/day |
 | Food | ₹800/day | ₹2,500/day |
 | Transport | ₹400/day | ₹1,200/day |
 | Activities | ₹1,000/day | ₹4,000/day |
 | **Total (3 days)** | **₹16,000** | **₹75,000+** |
 
----
+## 📌 9. Required Python Packages
 
-# 📁 Project Structure
+```bash
+pip install flask google-generativeai googlemaps python-dotenv
+```
 
-smart-travel-concierge/
-│
-├── agents/
-│ ├── coordinator_agent.py
-│ ├── itinerary_agent.py
-│ ├── activity_agent.py
-│ ├── hotel_agent.py
-│ ├── restaurant_agent.py
-│ ├── transport_agent.py
-│ ├── budget_agent.py
-│ └── memory_agent.py
-│
-├── tools/
-│ ├── google_places_tool.py
-│ ├── google_directions_tool.py
-│ ├── google_distance_tool.py
-│ └── google_search_tool.py
-│
-├── memory/
-│ ├── session_service.py
-│ └── memory_bank.py
-│
-├── core/
-│ ├── agent_manager.py
-│ ├── logging.py
-│ ├── tracing.py
-│ ├── metrics.py
-│
-├── api/
-│ ├── routes.py
-│ ├── openapi.yaml
-│
-├── main.py
-└── requirements.txt
+## 📌 10. Summary
 
-python
-Copy code
-
----
-
-# 🧪 Sample Code Snippet (Python)
-
-```python
-from google import genai
-import googlemaps
-
-# Initialize Clients
-gmaps = googlemaps.Client(key=GOOGLE_MAPS_KEY)
-client = genai.Client(api_key=GEMINI_KEY)
-
-def find_places(location, type):
-    return gmaps.places_nearby(
-        location=location,
-        radius=5000,
-        type=type
-    )['results']
-
-def generate_itinerary(activities, user_prompt):
-    response = client.models.generate_content(
-        model="gemini-2.0-pro",
-        contents=f"""
-        Create a detailed 3-day itinerary using these attractions:
-        {activities}
-        User request: {user_prompt}
-        """
-    )
-    return response.text
-☁ Deployment Options
-Google Cloud Run
-
-Firebase Cloud Functions
-
-Vercel / Railway
-
-Docker Container
-
-🏁 Conclusion
 This Smart Travel Concierge combines:
-
-Practical Google API integrations
-
-Strong multi-agent design
-
-Modern LLM reasoning using Gemini
-
-Memory + tools + sessions + observability
-
-Realistic India-focused recommendations
+- Practical Google API integrations
+- Strong multi-agent design
+- Modern LLM reasoning using Gemini
+- Memory + tools + sessions + observability
+- Realistic India-focused recommendations
